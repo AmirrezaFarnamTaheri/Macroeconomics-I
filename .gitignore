@@ -1,0 +1,33 @@
+# Large videos and recordings
+*.mp4
+*.mkv
+*.avi
+*.mov
+
+# External textbooks and large reference scans (> 20MB)
+Sources/
+Courses_References/macro_hw2.pdf
+Slides/handout 0. Introduction.pdf
+
+# Compressed archives
+*.zip
+*.rar
+*.tar.gz
+*.7z
+
+# Python & LaTeX cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.log
+.ts/
+
+# OS and Editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
