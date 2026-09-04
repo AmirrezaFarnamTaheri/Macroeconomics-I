@@ -1,0 +1,222 @@
+\documentclass[12pt]{extarticle}
+%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%
+\usepackage{titleps}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=19mm,
+    right=19mm,
+    top=20mm,
+    bottom=25mm
+}
+% Define dark and mid color
+
+\definecolor{Sepia}{HTML}{704214}
+\definecolor{RedViolet}{HTML}{C71585}
+
+% Mix lighter shade
+
+\colorlet{LightSepia1}{Sepia!80!yellow}
+\colorlet{LightSepia2}{Sepia!70!orange}
+\colorlet{DarkGolden}{RedViolet!30!yellow!70!Maroon!70!Brown}
+\colorlet{Golden}{RedViolet!30!yellow!70!pink!90!Brown}
+\colorlet{DDarkGolden}{RedViolet!20!yellow!70!Maroon!70!Black!65!Brown}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% FONT %%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+
+\def\primarycolor{DarkGolden}
+\def\secondarycolor{Golden}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\color{\secondarycolor}\oldheadrule}
+\renewcommand{\headrulewidth}{0.7pt}
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+\fancyhead[L]{\scshape \large \color{\primarycolor}{\fontfamily{qpl}\selectfont
+Amirreza "Farnam" Taheri \\
+Student ID: 4021300198003
+}}
+\fancyhead[R]{\color{\secondarycolor} Game Theory}
+\fancyfoot[C]{\textcolor{\primarycolor}{(\thepage)}}
+\setlength{\headheight}{1cm}
+
+\fancypagestyle{headerpage}{
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule
+    \renewcommand{\footrulewidth}{0pt} % Remove footer rule
+    \fancyhead[R]{} % Remove the line that displays "Course Name (Course Code)" in the header page
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% COMMANDS %%%%%%%%%%%%%%%
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\inner}[1]{\langle#1\rangle}
+\newcommand{\problem}[1]{
+    \subsection*{\textcolor{\secondarycolor}{#1}}
+    \addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\partof}[1]{
+    \subsubsection*{\textcolor{\secondarycolor}{(#1)}}
+    \addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}
+}
+\newcommand{\imp}{\implies}
+\newcommand{\rond}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drond}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\norm}[1]{\lvert#1\rvert}
+\newcommand{\expec}[1]{\mathbb{E}\left(#1\right)}
+\newcommand{\var}[1]{\mathrm{Var}\left(#1\right)}
+\newcommand{\cov}[1]{\mathrm{Cov}\left(#1\right)}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\ones}{$\star$}
+\newcommand{\twos}{$\star\star$}
+\newcommand{\threes}{$\star\star\star$}
+\newcommand{\fours}{$\star\star\star\star$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% BODY %%%%%%%%%%%%%%%%%%%
+\linespread{1.4}
+\color{DDarkGolden}
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\thispagestyle{headerpage} % Apply custom header style to this page only
+\begin{center}
+    \vspace*{1.5cm}
+    {\Huge\bfseries\color{\primarycolor}{\fontfamily{qpl}\selectfont Exercise 6}} \\
+    \vspace{3cm}
+    \includegraphics[width=6cm]{teias.png} \\ % Replace "university_logo.png" with the actual filename of your university logo
+    \vspace{2cm}
+    {\Large\color{\primarycolor}{\fontfamily{qpl}\selectfont Amirreza "Farnam" Taheri}} \\
+    {\large\color{\primarycolor}{Student ID: 4021300198003}} \\
+    \vspace{3cm}
+    {\large\bfseries\color{\secondarycolor}{Macroeconomics I}} \\
+    \vspace{1cm}
+    {\large\color{\secondarycolor}{Instructor: Prof. Hosein Joshaghani}} \\
+    \vspace{3cm}
+    {\large\color{\secondarycolor}{May 1, 2024}} % Replace with the actual date or semester information
+\end{center}
+\newpage % Add a page break after the header page
+
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\pagestyle{fancy} % Apply fancy header to the remaining pages
+\fancyhead[R]{\color{\secondarycolor} Problemset 6} % Display "Problemset #no" in the header of the remaining pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{1.}
+\partof{Household's Problem}
+The representative household maximizes its lifetime utility function subject to itd budget constraint:
+   \begin{align}
+    \max\quad U &= \mathbb{E}_t \left[ \sum_{i=0}^{\infty} \beta^{t+i} \left( \frac{C_{t+i}^{1-\sigma}}{1-\sigma} - \frac{N_{t+i}^{1+\eta}}{1+\eta} \right) \right]\\
+    \text{s.t.  }\quad C_t + i_t &= W_t N_t + R_t K_t
+   \end{align}\\
+   Substituting the law of motion for capital,
+   $ K_{t+1} = (1 - \delta)K_t + i_t $,
+   into the budget constraint:
+   \begin{equation}
+    C_t + K_{t+1} = W_t N_t + (1 + R_t - \delta) K_t
+   \end{equation} 
+The Lagrangian for firm problem is:
+\begin{equation}
+    \mathcal{L}= E_t\sum_{i=0}^{\infty} \beta^{t+i} \left[  \left( \frac{C_{t+i}^{1-\sigma}}{1-\sigma} - \frac{N_{t+i}^{1+\eta}}{1+\eta} \right)
+    -\mu_{t+i}\left( C_t + K_{t+1} - W_t N_t - (1 + R_t - \delta) K_t  \right)\right]
+\end{equation} \\\\
+The FOCs are:
+\begin{align}
+    \dfrac{\partial \mathcal{L}}{\partial C_{t+i}} &= C_{t+i}^{-\sigma} - \mu_{t+i} = 0\\
+    \dfrac{\partial \mathcal{L}}{\partial N_{t+i}} &= N_{t+i}^{\eta} - \mu_{t+i} = 0\\
+    \dfrac{\partial \mathcal{L}}{\partial k_{t+i}} &= \beta\; \mathbb{E}\mu_{t+i+1}(1 + R_t - \delta) - \mu_{t+i}  = 0 
+\end{align}\\
+The intertemporal optimality conditions are:
+Substituting equation (7) into the equation (9), we get:
+\begin{equation}
+    \beta\; \mathbb{E}C_{t+i+1}^{-\sigma}(1 + R_t - \delta) = C_{t+i}^{-\sigma}
+\end{equation}
+Similarly from equation (8) and (9), we get:
+\begin{equation}
+    \beta\; \mathbb{E}N_{t+i+1}^{\eta}(1 + R_t - \delta) = N_{t+i}^{\eta}
+\end{equation}\\
+The intratemporal optimality condition in the equilibrium:
+\begin{equation}
+    \dfrac{N_{t+i}^\eta}{C_{t+i}^{-\sigma}} = W_{t+i}
+\end{equation}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\partof{Firm's Problem}
+\setcounter{equation}{0}
+To show that firms won't make a profit in this economy,
+we assume perfect competition in the factor markets,
+which implies that firms take prices as given and thus price equals marginal cost.
+In equilibrium, firms make zero economic profit.\\\\
+The firm's technology is described by the production function:
+    \begin{equation}
+    Y_t = z_t K_t^{\alpha} N_t^{1-\alpha}
+   \end{equation} \\
+The technology follows an $AR1$ process:
+    \begin{equation}
+    \log(z_{t+1}) = \rho \log(z_t) + \epsilon_t, \quad \epsilon_t \sim IID
+   \end{equation} \\
+Firm wants to maximize its profit:
+\begin{equation}
+    \max\quad \Pi_t = z_t K_t^{\alpha} N_t^{1-\alpha} - W_t N_t - R_t K_t 
+   \end{equation} 
+The FOCs are:
+   \begin{align}
+        \dfrac{\partial \Pi}{\partial N_{t}} &= (1-\alpha) z_t K_t^{\alpha} N_t^{-\alpha} - W_t = 0\\
+        \dfrac{\partial \Pi}{\partial K_{t}} &= \alpha\; z_t K_t^{\alpha-1} N_t^{1-\alpha} - R_t = 0
+    \end{align}\\
+
+Plugging the optimal values into the Firm's profit we will see that firm's proft is equal to zero.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\partof{The Steady State}
+\setcounter{equation}{0}
+The steady states equations are as:
+\begin{align}
+    K_{t+1} = (1-\delta)K_t + i_t &= (1-\delta)K_t + z_t K_t^{\alpha} N_t^{1-\alpha} - C_t\\
+    \beta\; \mathbb{E}C_{t+1}^{-\sigma}(1 + R_t - \delta) &= C_{t}^{-\sigma}\\
+    \dfrac{N_{t}^\eta}{C_{t}^{-\sigma}} = W_{t} &= (1-\alpha) z_t K_t^{\alpha} N_t^{-\alpha}
+\end{align}\\
+In the Steady State, all variables are constant over time, and the economy is in a state of long-run equilibrium. The Steady State equations describe the relationships between the variables in this equilibrium state.
+In the steady state we have no noise, assuming $z^*=1$, we have:
+\begin{align}
+    K^{^*} = (1-\delta)K^{^*} + i^{^*} &= (1-\delta)K^{^*} + K^{^*\alpha} N^{^*1-\alpha} - C^{^*}\\
+    \beta\; \mathbb{E}C^{^*{-\sigma}}(1 + R_t - \delta) &= C^{^*{-\sigma}}\\
+    \dfrac{N^{^*\eta}}{C^{^*{-\sigma}}} = W^{^*} &= (1-\alpha) K^{^*\alpha} N^{^*-\alpha}
+\end{align}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{2. Intuition}
+For the steady states equations, the intuitions are as:\\\\
+\textbf{Capital Accumulation:}
+
+The steady state equation for capital accumulation states that the change in capital is equal to investment minus depreciation.\\\\
+\textbf{Consumption:}
+
+The steady state equation for consumption states that consumption is equal to output minus investment.\\\\
+\textbf{Labor:}
+
+The steady state equation for labor states that labor is equal to the marginal product of labor.\\\\
+Note that equation of the previous sections are already explained in the respective section.\\
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+

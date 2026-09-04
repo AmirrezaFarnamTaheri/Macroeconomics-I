@@ -1,0 +1,270 @@
+\documentclass[12pt]{extarticle}
+%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%
+\usepackage{titleps}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=19mm,
+    right=19mm,
+    top=20mm,
+    bottom=25mm
+}
+% Define dark and mid color
+
+\definecolor{Sepia}{HTML}{704214}
+\definecolor{RedViolet}{HTML}{C71585}
+
+% Mix lighter shade
+
+\colorlet{LightSepia1}{Sepia!80!yellow}
+\colorlet{LightSepia2}{Sepia!70!orange}
+\colorlet{DarkGolden}{RedViolet!30!yellow!70!Maroon!70!Brown}
+\colorlet{Golden}{RedViolet!30!yellow!70!pink!90!Brown}
+\colorlet{DDarkGolden}{RedViolet!20!yellow!70!Maroon!70!Black!65!Brown}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% FONT %%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+
+\def\primarycolor{DarkGolden}
+\def\secondarycolor{Golden}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\color{\secondarycolor}\oldheadrule}
+\renewcommand{\headrulewidth}{0.7pt}
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+\fancyhead[L]{\scshape \large \color{\primarycolor}{\fontfamily{qpl}\selectfont
+Amirreza "Farnam" Taheri \\
+Student ID: 4021300198003
+}}
+\fancyhead[R]{\color{\secondarycolor} Game Theory}
+\fancyfoot[C]{\textcolor{\primarycolor}{(\thepage)}}
+\setlength{\headheight}{1cm}
+
+\fancypagestyle{headerpage}{
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule
+    \renewcommand{\footrulewidth}{0pt} % Remove footer rule
+    \fancyhead[R]{} % Remove the line that displays "Course Name (Course Code)" in the header page
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% COMMANDS %%%%%%%%%%%%%%%
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\inner}[1]{\langle#1\rangle}
+\newcommand{\problem}[1]{
+    \subsection*{\textcolor{\secondarycolor}{#1}}
+    \addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\partof}[1]{
+    \subsubsection*{\textcolor{\secondarycolor}{(#1)}}
+    \addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}
+}
+\newcommand{\imp}{\implies}
+\newcommand{\rond}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drond}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\norm}[1]{\lvert#1\rvert}
+\newcommand{\expec}[1]{\mathbb{E}\left(#1\right)}
+\newcommand{\var}[1]{\mathrm{Var}\left(#1\right)}
+\newcommand{\cov}[1]{\mathrm{Cov}\left(#1\right)}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\ones}{$\star$}
+\newcommand{\twos}{$\star\star$}
+\newcommand{\threes}{$\star\star\star$}
+\newcommand{\fours}{$\star\star\star\star$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% BODY %%%%%%%%%%%%%%%%%%%
+\linespread{1.4}
+\color{DDarkGolden}
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\thispagestyle{headerpage} % Apply custom header style to this page only
+\begin{center}
+    \vspace*{1.5cm}
+    {\Huge\bfseries\color{\primarycolor}{\fontfamily{qpl}\selectfont Exercise 7}} \\
+    \vspace{3cm}
+    \includegraphics[width=6cm]{teias.png} \\ % Replace "university_logo.png" with the actual filename of your university logo
+    \vspace{2cm}
+    {\Large\color{\primarycolor}{\fontfamily{qpl}\selectfont Amirreza "Farnam" Taheri}} \\
+    {\large\color{\primarycolor}{Student ID: 4021300198003}} \\
+    \vspace{3cm}
+    {\large\bfseries\color{\secondarycolor}{Macroeconomics I}} \\
+    \vspace{1cm}
+    {\large\color{\secondarycolor}{Instructor: Prof. Hosein Joshaghani}} \\
+    \vspace{3cm}
+    {\large\color{\secondarycolor}{May 15, 2024}} % Replace with the actual date or semester information
+\end{center}
+\newpage % Add a page break after the header page
+
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\pagestyle{fancy} % Apply fancy header to the remaining pages
+\fancyhead[R]{\color{\secondarycolor} Problemset 7} % Display "Problemset #no" in the header of the remaining pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\problem{Preliminaries:}
+\begin{enumerate}
+    \item \textbf{Concavity of a Function:}\\ A function $ F $ is concave over a region if, for any two points within that region, the line segment connecting $ F $ at those points lies below or on the graph of $ F $. Mathematically, for any $ x, y $ in the domain and $ \lambda \in [0, 1] $, a concave function satisfies:
+    $$ F(\lambda x + (1 - \lambda)y) \geq \lambda F(x) + (1 - \lambda)F(y) $$
+    \item \textbf{Euler Equation:}\\ In the context of dynamic optimization, the Euler Equation describes the path of an economic variable that maximizes utility over time. It represents the necessary condition for optimality, equating the marginal utility of consumption today to the discounted expected marginal utility of consumption tomorrow.
+    \item \textbf{Transversality Condition:}\\ This condition ensures that the present value of future variables (like capital or consumption) does not grow without bound, which would be economically infeasible. It is a boundary condition for the optimization problem.
+ 
+\end{enumerate}
+
+\problem{\textsc{Question 1:}}
+
+Assume that $F$ is concave in $(x, y)$, that is $F_x(x^*_t, x^*_{t+1}) \geq 0$ and $X = \mathbb{R}_+^m$. Prove that if $(x^*_{t+1})_{t=0}^{\infty}$ satisfies Euler Equation and Transversality Condition, the path $(x^*_{t+1})_{t=0}^{\infty}$ is optimal by taking following steps:
+
+(a) Using concavity of $f$ and taking an arbitrary $(x_{t+1})_{t=0}^{\infty}$ with $x_0 = x^*_0$ and $x_{t+1} \geq 0$ for all $t$, derive the following inequality:
+    $$
+    \lim_{T \to \infty} \sum_{t=0}^{T} \beta^t [F(x_t, x_{t+1}) - F(x^*_t, x^*_{t+1})] \leq \lim_{T \to \infty} \sum_{t=0}^{T} \beta^t [F_x(x^*_t, x^*_{t+1})(x_t - x^*_t) + F_y(x^*_t, x^*_{t+1})(x_{t+1} - x^*_{t+1})]
+    $$
+
+(b) Develop the summation in the right hand side and substitute $x_0 = x^*_0$.
+
+(c) Use Euler Equation to simplify this summation.
+
+(d) Use concavity and $x_{t+1} \geq 0$ to derive an upper bound for the arguments of each period in the summation.
+
+(e) Use the Transversality Condition to complete the proof.
+
+\newpage
+\problem{\textsc{Solution 1:}}
+
+\partof{Establishing the Optimal Path}
+
+
+We want to show that for any feasible sequence $ (x_t) $ starting from $ x_0 $, the path $ (x^*_t) $ yields a higher discounted sum of the function $ F $. Mathematically, we want to prove:
+
+$$
+\lim_{T \to \infty} \sum_{t=0}^{T} \beta^t F(x_t, x_{t+1}) > \lim_{T \to \infty} \sum_{t=0}^{T} \beta^t F(x'_t, x'_{t+1}),
+$$\\
+where $ \beta $ is the discount factor, and $ F $ is bounded.\\\\
+\textbf{Concavity and Differentiability of $ F $:}\\
+From the concavity and differentiability of $ F $, we derive an important inequality that compares the actual value of $ F $ at any arbitrary point $ (x_t, x_{t+1}) $ with its linear approximation around an optimal point $ (x'_t, x'_{t+1}) $. This is expressed as:
+$$
+F(x_t, x_{t+1}) \leq F(x'_t, x'_{t+1}) + F_x(x'_t, x'_{t+1})(x_t - x'_t) + F_y(x'_t, x'_{t+1})(x_{t+1} - x'_{t+1}).
+$$\\
+Here, $ F_x $ and $ F_y $ are the partial derivatives of $ F $, representing the slope of the tangent line to the function $ F $ at the optimal point $ (x'_t, x'_{t+1}) $. These derivatives measure how much $ F $ changes with a small change in $ x_t $ and $ x_{t+1} $, respectively.\\\\
+The inequality tells us that the actual increase in $ F $ when moving from the optimal point to any other point is always less than or equal to what the linear approximation predicts. This is because $ F $, being a concave function, exhibits diminishing marginal returns. As a result, as we move away from the optimal point, the function's rate of increase slows down, and the linear approximation, which assumes a constant rate of increase, overestimates the actual value of $ F $.\\\\
+In simpler terms, if you're at the optimal point and you move slightly away from it, the actual gain in $ F $ will be less than the gain predicted by the tangent line. The tangent line's slope is constant, reflecting the rate of increase at the optimal point, but the actual slope of $ F $ decreases as you move away from this point due to the concavity of $ F $.\\\\
+\newpage
+\textbf{Summation and Convergence:}\\
+Multiplying both sides by $ \beta^t $ and summing over $ T $ terms, we get:
+$$
+\sum_{t=0}^{T} \beta^t F(x_t, x_{t+1}) \leq \sum_{t=0}^{T} \beta^t F(x'_t, x'_{t+1}) + D_T,
+$$\\
+where $ D_T $ is defined as:
+$$
+D_T = \sum_{t=0}^{T} \beta^t \left[ F_x(x'_t, x'_{t+1})(x_t - x'_t) + F_y(x'_t, x'_{t+1})(x_{t+1} - x'_{t+1}) \right].
+$$\\
+Since the sum $ \sum_{t=0}^{T} \beta^t F(x_t, x_{t+1}) $ converges for any sequence $ (x_t) $, $ D_T $ must also converge. We need to show that $ \lim_{T \to \infty} D_T \leq 0 $.\\\\
+\textbf{Rearranging $ D_T $:}\\
+We can rearrange the terms in $ D_T $ to get:
+$$
+D_T = \sum_{t=0}^{T-1} \beta^t \left[ F_y(x_t, x_{t+1}) + \beta F_x(x_{t+1}, x_{t+2})(x_{t+1} - x^*_{t+1}) \right] - \beta^T F_x(x_T, x_{T+1})(x_T - x^*_T).
+$$\\
+The Euler conditions guarantee that the first $ T - 1 $ terms go to zero, hence:
+$$
+\lim_{T \to \infty} D_T = - \lim_{T \to \infty} \beta^T F_x(x^*_T, x_{T+1})(x_T - x^*_T) \leq 0,
+$$\\
+where the last inequality is implied by the transversality condition.\\\\
+\textbf{Using the Transversality Condition:}\\
+If $ F_x > 0 $ and $ x_T \geq 0 $, we have:
+$$
+\lim_{T \to \infty} \beta^T F_x(x_T, x_{T+1})(x_T - x^*_T) \geq - \lim_{T \to \infty} \beta^T F_x(x^*_T, x^*_{T+1})x^*_T \geq 0.
+$$\\
+This shows that the path $ (x^*_t) $ is indeed optimal because any deviation from it would result in a lower discounted sum of $ F $, given the properties of $ F $ and the conditions of the problem.\\\\
+In economic terms, this proof demonstrates that the optimal consumption path $ (x^*_t) $ maximizes the total discounted utility over time, considering the diminishing marginal utility of consumption (concavity of $ F $) and the importance of future consumption (transversality condition). The Euler equation ensures that the marginal utility is balanced over time, which is a fundamental principle in intertemporal choice theory.\\\\
+This concludes the detailed explanation of the proof. Each step builds upon the previous one, using the mathematical properties of the function $ F $ and the economic principles underlying the problem to arrive at the conclusion that $ (x^*_t) $ is the optimal path.\\\\
+\partof{Note}
+To explain how the Euler conditions guarantee that the first $ T - 1 $ terms go to zero, consider the Euler Equation and its analytical implications.\\\\
+The Euler Equation for this problem can be written as:
+$$
+\beta F_x(x^*_t, x^*_{t+1}) = F_y(x^*_t, x^*_{t+1})
+$$\\
+This equation states that the marginal utility of consumption today (left-hand side) discounted to the next period should be equal to the marginal utility of consumption in the next period (right-hand side). This condition ensures that the path $ (x^*_t) $ is chosen such that there is no incentive to reallocate consumption between any two periods, as doing so would not increase the overall utility.\\
+Now, let's consider the rearranged summation $ D_T $:
+$$
+D_T = \sum_{t=0}^{T-1} \beta^t \left[ F_y(x^*_t, x^*_{t+1}) + \beta F_x(x^*_{t+1}, x^*_{t+2})(x_{t+1} - x^*_{t+1}) \right] - \beta^T F_x(x^*_T, x^*_{T+1})(x_T - x^*_T)
+$$\\
+By applying the Euler Equation, we can replace $ F_y(x^*_t, x^*_{t+1}) $ with $ \beta F_x(x^*_t, x^*_{t+1}) $, which simplifies the expression within the summation to:
+$$
+\beta^t \left[ \beta F_x(x^*_t, x^*_{t+1}) + \beta F_x(x^*_{t+1}, x^*_{t+2})(x_{t+1} - x^*_{t+1}) \right]
+$$\\
+Since $ x^*_t $ is the optimal path, the difference $ x_{t+1} - x^*_{t+1} $ will be zero for all $ t $ in the optimal scenario, making the terms within the summation zero. Therefore, the first $ T - 1 $ terms of $ D_T $ will go to zero as $ T $ approaches infinity, under the assumption that the path $ (x^*_t) $ is indeed optimal and satisfies the Euler Equation at each point in time.\\\\
+\newpage
+The transversality condition, which states that:
+$$
+\lim_{T \to \infty} \beta^T F_x(x^*_T, x^*_{T+1})(x_T - x^*_T) = 0
+$$\\
+ensures that the last term of $ D_T $ also goes to zero as $ T $ approaches infinity. This condition is necessary to prevent the accumulation of unbounded benefits or costs at the horizon, which would make the optimization problem ill-defined.\\\\
+In summary, the Euler conditions, along with the transversality condition, ensure that the entire summation $ D_T $ converges to zero, which implies that the path $ (x^*_t) $ is indeed optimal.\\
+\partof{Intition}
+\textbf{Euler Equation:}\\
+The Euler Equation is like a balance scale for intertemporal choice. It ensures that the consumer is indifferent between consuming an additional unit today or in the future. If you think of $ \beta $ as a discount factor, it's like saying, "The pleasure I get from eating an apple today, discounted into tomorrow, is just as good as the pleasure I'll get from eating an apple tomorrow." This balance is what makes the path optimal; there's no better trade-off between today and tomorrow.\\\\
+\textbf{Summation $ D_T $:}\\
+The summation $ D_T $ is a way of adding up all the little differences in utility over time between the optimal path and any other path. By applying the Euler Equation, we're essentially saying, "Let's make sure that every step along the way, we're not losing any utility by sticking to our optimal path." If the path is truly optimal, these differences should cancel out over time, which is why the terms go to zero.\\\\
+\textbf{Transversality Condition:}\\
+The Transversality Condition is like a promise about the future. It says that as we look further and further ahead, the value of our decisions today becomes negligible. It's a bit like saying, "In the grand scheme of things, the exact amount of money I have in my pocket right now won't matter much in a hundred years." This condition prevents unrealistic scenarios where our model would predict infinite wealth or debt, which don't make sense in the real world.\\\\
+\textbf{Convergence of $ D_T $:}\\
+The convergence of $ D_T $ to zero is crucial. It's the mathematical way of saying, "All the choices we've made along the way have added up to the best possible outcome." If $ D_T $ didn't converge to zero, it would mean there's a lingering difference in utility that we haven't accounted for, suggesting that there might be a better path we missed.\\
+In essence, the Euler Equation ensures we're making the best choices at each step, while the Transversality Condition assures us that these choices will lead to a sensible outcome in the long run. Together, they confirm that the path we've chosen is the best one according to our model.\\\\
+\newpage
+\problem{\textsc{Question 2:}}
+Suppose assumptions 1 and 2 stated in class hold. Define $ V^*(.) $ as the solution to the Stochastic Process (SP). Also, assume that $ V^*(x_0) = u(\tilde{x}^*) $ for some $ \tilde{x}^* $ in the policy set $ \Pi(x_0) $. Prove that along this sequence, $ \tilde{x}^* $, and for all $ t > 0 $, the pair $ (x^*_t, x^*_{t+1}) $ maximize the right-hand side of the Functional Equation (FE), that is:
+$$
+V^*(x^*_t) = F(x^*_t, x^*_{t+1}) + \beta V^*(x^*_{t+1})
+$$\newpage
+\problem{\textsc{Solution 2:}}
+\textbf{Assumptions and Definitions:}\\
+We start with two key assumptions stated in class. We define $ V^*(.) $ as the solution to the Stochastic Process (SP), which represents the optimal value function. This function gives us the maximum utility achievable from any given state under the optimal policy.\\\\
+\textbf{Initial Condition and Policy Set:}\\
+We are given that $ V^*(x_0) = u(\tilde{x}^*) $ for some $ \tilde{x}^* $ in the policy set $ \Pi(x_0) $. The policy set contains all feasible plans starting from the initial state $ x_0 $.\\\\
+\textbf{Functional Equation (FE):}\\
+The Functional Equation is central to dynamic programming and is given by:
+$$
+V^*(x^*_t) = F(x^*_t, x^*_{t+1}) + \beta V^*(x^*_{t+1})
+$$\\
+This equation states that the value of being in state $ x^*_t $ under the optimal policy is equal to the immediate utility $ F(x^*_t, x^*_{t+1}) $ plus the discounted future value $ \beta V^*(x^*_{t+1}) $.\\\\
+\textbf{Proving the Optimal Sequence:}\\
+To prove that the sequence $ \tilde{x}^* $ maximizes the right-hand side of the FE, we consider the value function at $ x_0 $. The value function at $ x_0 $, $ V^*(x_0) $, is the maximum utility that can be achieved from $ x_0 $ under the optimal policy. It can be expressed as:
+$$
+V^*(x_0) = u(\tilde{x}^*) = F(x_0, x^*_1) + \beta u(\tilde{x}'^*)
+$$\\
+Here, $ u(\tilde{x}^*) $ is the utility of the optimal plan $ \tilde{x}^* $, which consists of the immediate utility $ F(x_0, x^*_1) $ and the discounted future utility $ \beta u(\tilde{x}'^*) $.\\\\
+\textbf{Optimality Across All Plans:}\\
+The value function also satisfies the following inequality:
+$$
+V^*(x_0) \geq F(x_0, x_1) + \beta u(\tilde{x}')
+$$\\
+for all $ \tilde{x} $ in $ \Pi(x_0) $. This means that the value function at $ x_0 $ is greater than or equal to the utility of any other plan starting with $ x_1 $, reinforcing the optimality of the plan starting with $ x^*_1 $.\\\\
+\textbf{Inductive Step and Principle of Optimality:}\\
+By induction, we extend this result to all $ t $, confirming that the sequence $ (x^*_t) $ maximizes the right-hand side of the FE for all $ t $. For any time period $ t $, the optimal plan $ x^*_t $ and $ x^*_{t+1} $ will yield the highest possible value of the value function, adhering to the principle of optimality.
+\partof{Summary and Economic Intuition}
+
+
+The solution demonstrates that the optimal policy $ (x^*_t) $ maximizes the value function at every stage, ensuring that the choices made at each point are the best possible given the future rewards. This reflects the fundamental concept in dynamic programming and optimal control theory, where decisions are made to maximize a measure of cumulative reward or utility over time.\\\\
+In economic terms, this solution illustrates how rational agents make intertemporal choices, balancing immediate gratification against future benefits in an uncertain environment. The optimal policy takes into account not only the current state but also the expected future states, ensuring that the path chosen maximizes overall well-being.\\\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
