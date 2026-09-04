@@ -1,0 +1,220 @@
+\documentclass[12pt]{extarticle}
+%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%
+\usepackage{titleps}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=19mm,
+    right=19mm,
+    top=20mm,
+    bottom=25mm
+}
+% Define dark and mid color
+
+\definecolor{Sepia}{HTML}{704214}
+\definecolor{RedViolet}{HTML}{C71585}
+
+% Mix lighter shade
+
+\colorlet{LightSepia1}{Sepia!80!yellow}
+\colorlet{LightSepia2}{Sepia!70!orange}
+\colorlet{DarkGolden}{RedViolet!30!yellow!70!Maroon!70!Brown}
+\colorlet{Golden}{RedViolet!30!yellow!70!pink!90!Brown}
+\colorlet{DDarkGolden}{RedViolet!20!yellow!70!Maroon!70!Black!65!Brown}
+
+\usepackage{listings}
+
+% Define colors for Visual Studio Code Dark Material them
+
+\definecolor{vscode-bg}{RGB}{30, 30, 30}
+\definecolor{vscode-fg}{RGB}{197, 200, 198}
+\definecolor{vscode-comment}{RGB}{116, 141, 153}
+\definecolor{vscode-purple}{RGB}{198, 120, 221}
+\definecolor{vscode-green}{RGB}{86, 156, 214}
+
+% Define style for Python cod
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{vscode-bg},
+    basicstyle=\color{vscode-fg}\footnotesize\ttfamily, % Set font to Fira Code
+    commentstyle=\color{vscode-comment},
+    keywordstyle=\color{vscode-purple},
+    stringstyle=\color{vscode-green},
+    numberstyle=\tiny\color{vscode-fg},
+    tabsize=2,
+    showlines=false, % Remove white grid between lines
+}
+
+% Set Python language for syntax highlighting
+\lstset{style=mystyle, language=Python}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% FONT %%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+
+\def\primarycolor{DarkGolden}
+\def\secondarycolor{Golden}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\color{\secondarycolor}\oldheadrule}
+\renewcommand{\headrulewidth}{0.7pt}
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+\fancyhead[L]{\scshape \large \color{\primarycolor}{\fontfamily{qpl}\selectfont
+Amirreza "Farnam" Taheri \\
+Student ID: 4021300198003
+}}
+\fancyhead[R]{\color{\secondarycolor} Game Theory}
+\fancyfoot[C]{\textcolor{\primarycolor}{(\thepage)}}
+\setlength{\headheight}{1cm}
+
+\fancypagestyle{headerpage}{
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule
+    \renewcommand{\footrulewidth}{0pt} % Remove footer rule
+    \fancyhead[R]{} % Remove the line that displays "Course Name (Course Code)" in the header page
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% COMMANDS %%%%%%%%%%%%%%%
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\inner}[1]{\langle#1\rangle}
+\newcommand{\problem}[1]{
+    \subsection*{\textcolor{\secondarycolor}{#1}}
+    \addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\partof}[1]{
+    \subsubsection*{\textcolor{\secondarycolor}{(#1)}}
+    \addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% BODY %%%%%%%%%%%%%%%%%%%
+\linespread{1.4}
+\color{DDarkGolden}
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\thispagestyle{headerpage} % Apply custom header style to this page only
+\begin{center}
+    \vspace*{1.5cm}
+    {\Huge\bfseries\color{\primarycolor}{\fontfamily{qpl}\selectfont Exercise 2}} \\
+    \vspace{3cm}
+    \includegraphics[width=6cm]{teias.png} \\ % Replace "university_logo.png" with the actual filename of your university logo
+    \vspace{2cm}
+    {\Large\color{\primarycolor}{\fontfamily{qpl}\selectfont Amirreza "Farnam" Taheri}} \\
+    {\large\color{\primarycolor}{Student ID: 4021300198003}} \\
+    \vspace{3cm}
+    {\large\bfseries\color{\secondarycolor}{Macroeconomics I}} \\
+    \vspace{1cm}
+    {\large\color{\secondarycolor}{Instructor: Prof. Hosein Joshaghani}} \\
+    \vspace{3cm}
+    {\large\color{\secondarycolor}{March 11, 2024}} % Replace with the actual date or semester information
+\end{center}
+\newpage % Add a page break after the header page
+
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\pagestyle{fancy} % Apply fancy header to the remaining pages
+\fancyhead[R]{\color{\secondarycolor} Problemset 2} % Display "Problemset #no" in the header of the remaining pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Literature Review}
+
+
+1. \textbf{McKinsey Global Institute (1998)}:\\
+   - The study titled "Productivity – The Key to an Accelerated Development Path for Brazil" examines factors affecting productivity in Brazil, including labor-market regulations and resource allocation.\\
+   - It highlights the impact of labor-market regulations on productivity in Brazil's retail sector and emphasizes the role of resource misallocation.\\
+   - The study provides insights into how productivity differences affect Brazil's economic development.\\
+
+
+2. \textbf{William W. Lewis (2004)}:\\
+    - In his book "The Power of Productivity: Wealth, Poverty, and the Threat to Global Stability," William W. Lewis, founding director of the McKinsey Global Institute, provides a detailed look at local economies in several parts of the world, including the U.S., Japan, India, and Brazil.\\
+    - Based on the Institute's 12-year survey and analysis, Lewis concludes that the great economic disparity between rich and poor countries will ultimately have a negative impact on all nations.\\
+    - Lewis examines individual industries within countries to evaluate productivity per employee, emphasizing a "bottom-up" analysis rather than the usual macroeconomic approach.\\
+
+
+3. \textbf{Melitz (2003)}:\\
+   - Marc Melitz's study titled "The Impact of Trade on Intra-Industry Reallocations and Aggregate Industry Productivity" analyzes the effects of international trade on industry dynamics. The model shows how trade induces more productive firms to enter the export market while forcing less productive firms to exit, leading to aggregate industry productivity growth.\\
+   - This study contributes to understanding the role of trade in reallocations within industries and highlights a previously unexamined benefit from trade.\\
+
+
+
+4. \textbf{Howitt (2000)}:\\
+In "Endogenous Growth and Cross-Country Income Differences," Howitt constructs a multicountry Schumpeterian growth model.
+The paper explores how technology transfer leads to convergence in growth paths for R\&D-performing countries, while other countries stagnate.
+It also discusses the impact of parameter changes on productivity and per capita income.\\
+
+
+5. \textbf{Klenow and Rodríguez-Clare (2005)}:\\
+Their work focuses on technology diffusion.
+They argue that differences in the allocation of resources across heterogeneous plants contribute to productivity differences across countries.
+Slow diffusion and misallocation both play a role in explaining output disparities.\\
+
+
+6. \textbf{Restuccia and Rogerson (2008)}:\\
+This paper takes a different approach by emphasizing misallocation of resources across firms. It suggests that inefficiencies in resource allocation can significantly affect aggregate Total Factor Productivity (TFP).
+Beyond static costs, the dynamic effects of misallocation on productivity growth are also important.\\
+
+
+7. \textbf{Chang-Tai Hsieh and Peter J. Klenow (2009):}\\
+      - In their paper "Misallocation and Manufacturing TFP in China and India," Hsieh and Klenow explore resource misallocation's impact on aggregate Total Factor Productivity (TFP).\\
+      - Using microdata on manufacturing establishments, they quantify potential misallocation gaps in marginal products of labor and capital across plants within narrowly defined industries in China and India compared with the United States.\\
+      - Reallocation of capital and labor to equalize marginal products could lead to substantial manufacturing TFP gains in both China and India.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+1. \textbf{Chari, Kehoe, and McGrattan (2007)}:\\   
+\textbf{Title}: "Business Cycle Accounting"\\
+\textbf{Key Contribution}:\\
+       - They proposed a method called "business cycle accounting" to guide researchers in developing quantitative models of economic fluctuations.\\
+\textbf{Methodology}:\\
+       - Introduced the concept of "wedges" (time-varying distortions) that resemble productivity, labor, investment taxes, and government consumption.\\
+       - Measured these wedges using data and fed them back into a prototype growth model to assess their impact on fluctuations.\\
+\textbf{Findings}:\\
+       - Efficiency and labor wedges together accounted for most fluctuations, while the investment wedge played a tertiary role, and the government consumption wedge had no impact.\\
+       - Models with frictions primarily as investment wedges were not promising for studying U.S. business cycles.\\\\\\
+
+2. \textbf{Foster, Haltiwanger, and Syverson (2008)}:\\
+\textbf{Title}: "Reallocation, Firm Turnover, and Efficiency: Selection on Productivity or Profitability?"\\
+\textbf{Key Contribution}:\\
+       - Investigated selection and productivity growth in industries using producer-level quantities and prices separately.\\
+\textbf{Findings}:\\
+       - Revenue productivity (positively correlated with price) and physical productivity (inversely correlated with price) have important differences.\\
+       - Young producers charge lower prices than incumbents, understating new producers' productivity advantages.\\
+       - Entry contributes significantly to aggregate productivity growth.\\\\\\\\\\\\
+
+3. \textbf{Banerjee and Duflo (2005)}:\\
+\textbf{Title}: "Growth Theory Through the Lens of Development Economics"\\
+\textbf{Key Contribution}:\\
+   Challenged the assumption of optimal resource allocation within economies.\\
+\textbf{Findings}:\\
+       - Extensive evidence from microdevelopment literature showed radical failures in optimal resource allocation.\\
+       - Enormous heterogeneity in rates of return to the same factor within a single economy.\\
+       - Misallocation across firms can significantly affect aggregate TFP.\\
+
+4. \textbf{Impact on Hsieh and Klenow (2009)}:\\
+   - Hsieh and Klenow built on the idea of resource misallocation.\\
+   - They quantified the extent of misallocation in China and India compared to the United States using microdata on manufacturing establishments.\\
+   - Found sizable gaps in marginal products of labor and capital within industries in China and India.\\
+   - Hypothetically reallocating capital and labor to equalize marginal products led to substantial manufacturing TFP gains in both countries.\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
