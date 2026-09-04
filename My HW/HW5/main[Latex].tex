@@ -1,0 +1,209 @@
+\documentclass[12pt]{extarticle}
+%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%
+\usepackage{titleps}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=19mm,
+    right=19mm,
+    top=20mm,
+    bottom=25mm
+}
+% Define dark and mid color
+
+\definecolor{Sepia}{HTML}{704214}
+\definecolor{RedViolet}{HTML}{C71585}
+
+% Mix lighter shade
+
+\colorlet{LightSepia1}{Sepia!80!yellow}
+\colorlet{LightSepia2}{Sepia!70!orange}
+\colorlet{DarkGolden}{RedViolet!30!yellow!70!Maroon!70!Brown}
+\colorlet{Golden}{RedViolet!30!yellow!70!pink!90!Brown}
+\colorlet{DDarkGolden}{RedViolet!20!yellow!70!Maroon!70!Black!65!Brown}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% FONT %%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+
+\def\primarycolor{DarkGolden}
+\def\secondarycolor{Golden}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\color{\secondarycolor}\oldheadrule}
+\renewcommand{\headrulewidth}{0.7pt}
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+\fancyhead[L]{\scshape \large \color{\primarycolor}{\fontfamily{qpl}\selectfont
+Amirreza "Farnam" Taheri \\
+Student ID: 4021300198003
+}}
+\fancyhead[R]{\color{\secondarycolor} Game Theory}
+\fancyfoot[C]{\textcolor{\primarycolor}{(\thepage)}}
+\setlength{\headheight}{1cm}
+
+\fancypagestyle{headerpage}{
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule
+    \renewcommand{\footrulewidth}{0pt} % Remove footer rule
+    \fancyhead[R]{} % Remove the line that displays "Course Name (Course Code)" in the header page
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% COMMANDS %%%%%%%%%%%%%%%
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\inner}[1]{\langle#1\rangle}
+\newcommand{\problem}[1]{
+    \subsection*{\textcolor{\secondarycolor}{#1}}
+    \addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\partof}[1]{
+    \subsubsection*{\textcolor{\secondarycolor}{(#1)}}
+    \addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}
+}
+\newcommand{\imp}{\implies}
+\newcommand{\rond}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drond}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\norm}[1]{\lvert#1\rvert}
+\newcommand{\expec}[1]{\mathbb{E}\left(#1\right)}
+\newcommand{\var}[1]{\mathrm{Var}\left(#1\right)}
+\newcommand{\cov}[1]{\mathrm{Cov}\left(#1\right)}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\ones}{$\star$}
+\newcommand{\twos}{$\star\star$}
+\newcommand{\threes}{$\star\star\star$}
+\newcommand{\fours}{$\star\star\star\star$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% BODY %%%%%%%%%%%%%%%%%%%
+\linespread{1.4}
+\color{DDarkGolden}
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\thispagestyle{headerpage} % Apply custom header style to this page only
+\begin{center}
+    \vspace*{1.5cm}
+    {\Huge\bfseries\color{\primarycolor}{\fontfamily{qpl}\selectfont Exercise 5}} \\
+    \vspace{3cm}
+    \includegraphics[width=6cm]{teias.png} \\ % Replace "university_logo.png" with the actual filename of your university logo
+    \vspace{2cm}
+    {\Large\color{\primarycolor}{\fontfamily{qpl}\selectfont Amirreza "Farnam" Taheri}} \\
+    {\large\color{\primarycolor}{Student ID: 4021300198003}} \\
+    \vspace{3cm}
+    {\large\bfseries\color{\secondarycolor}{Macroeconomics I}} \\
+    \vspace{1cm}
+    {\large\color{\secondarycolor}{Instructor: Prof. Hosein Joshaghani}} \\
+    \vspace{3cm}
+    {\large\color{\secondarycolor}{April 16, 2024}} % Replace with the actual date or semester information
+\end{center}
+\newpage % Add a page break after the header page
+
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\pagestyle{fancy} % Apply fancy header to the remaining pages
+\fancyhead[R]{\color{\secondarycolor} Problemset 5} % Display "Problemset #no" in the header of the remaining pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{Problem 1}
+The constant-relative-risk-aversion utility function is
+\begin{align*}
+    u(C_t) = \frac{C_t^{1-\theta}}{1-\theta}
+\end{align*}
+From solving Romer's model we had:
+\begin{align*}
+    \frac{\dot{C_t}}{C_t} = \frac{r_t - \rho}{\theta} \imp r_t = \rho + \theta \frac{\dot{C_t}}{C_t}
+\end{align*}
+Since all consumers are identical, the equilibrium consumption would be: $C_t \bar{L}=Y_t$.
+Taking derivative we will see that the growth rate of output and consuption are equal, so substituting the growth rate, $BL_A \frac{1-\phi}{\phi}$, we get:
+\begin{align*}
+    r = \rho + \theta BL_A \frac{1-\phi}{\phi}
+\end{align*}
+From solving the model in the book, we've had calculated the present value of profit, now substituting the last equation into it, we get:
+\begin{align*}
+    \pi_t = \dfrac{\dfrac{1-\phi}{\phi} (\bar{L} - L_A) \dfrac{w_t}{A_t}}{\rho + \theta BL_A \dfrac{1-\phi}{\phi} - BL_A \dfrac{1-2\phi}{\phi}}
+\end{align*}
+In the equilibrium present value of profit is equal to cost of invention,$\dfrac{w_t}{BA_t}$, so solving the equilibrium condition we have:
+\begin{align*}
+    \frac{w_t}{BA_t} &= \dfrac{\dfrac{1-\phi}{\phi} (\bar{L} - L_A) \dfrac{w_t}{A_t}}{\rho + \theta BL_A \dfrac{1-\phi}{\phi} - BL_A \dfrac{1-2\phi}{\phi}}                                                              \\
+    \implies \frac{1}{B} &= \dfrac{\dfrac{1-\phi}{\phi} (\bar{L} - L_A) }{\rho + BL_A \biggl[\theta \dfrac{1-\phi}{\phi} - \dfrac{1-2\phi}{\phi}\biggr]}                                                                          \\
+    \implies \bar{L} - L_A &= \frac{\phi}{1-\phi}
+    \frac{\rho + BL_A \biggl[\theta \dfrac{1-\phi}{\phi} - \dfrac{1-2\phi}{\phi}\biggr]}{B}                                                                                                                             \\
+    \implies \bar{L} - L_A &= \frac{\phi}{1-\phi}
+    \frac{\rho}{B}
+    L_A \biggl[\theta \dfrac{1-\phi}{\phi} - \dfrac{1-2\phi}{\phi}\biggr]
+\end{align*}
+Which can be simplified and solved for $L_A$ as
+\begin{align*}
+    \bar{L} - L_A &= \frac{\phi}{1-\phi} \frac{\rho}{B} +
+    \frac{\phi}{1-\phi} L_A \frac{1}{\phi} (\theta(1-\phi) - (1-2\phi)) \\
+    \implies \bar{L} - \frac{\phi}{1-\phi} \frac{\rho}{B} &=
+    \frac{\phi}{1-\phi} L_A \left(\frac{1}{\phi} (\theta(1-\phi) - (1-2\phi))\right) + L_A\\
+    \implies \bar{L} - \frac{\phi}{1-\phi} \frac{\rho}{B} &=
+    L_A (\frac{\phi}{1-\phi} \left(\frac{1}{\phi} (\theta(1-\phi) - (1-2\phi))\right) + 1)\\
+    \implies \bar{L} - \frac{\phi}{1-\phi} \frac{\rho}{B} &=
+    L_A (\theta - \frac{1-2\phi}{1-\phi} + 1)\\
+    \implies L_A &= \frac{1}{\phi + \theta - \phi \theta}  \biggl((1-\phi)\bar{L} - \frac{\phi \rho}{B}\biggr)\;\checkmark
+\end{align*}\\
+So the optimal level of cunsomption would be:
+$$L_A = \max\bigl\{\frac{1}{\phi + \theta - \phi \theta}  \biggl((1-\phi)\bar{L} - \frac{\phi \rho}{B}\biggr),\;0\bigr\}$$
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{Problem 2}
+\partof{a}
+The patent price is given as: $$\frac{\delta w_t}{\phi} - w_t.$$\\
+So the innovater's profit can be calculated by putting the new profit in the patent holder's profit equation:
+\begin{align*}
+    \pi_t & = \frac{\bar{L} - L_A}{A_t} \biggl[\frac{\delta w_t}{\phi} - w_t\biggr] \\
+          & = \frac{\bar{L} - L_A}{A_t} w_t\biggl[\frac{\delta - \phi}{\phi}\biggr]
+\end{align*}
+From the main model, we can plugin the interest rate and profit's growth rate, so we get:
+\begin{align*}
+    \pi_t &= \dfrac{\biggl(\dfrac{\delta - \phi}{\phi}\biggr)\dfrac{\bar{L} - L_A}{A_t} w_t}
+    {\rho + BL_A \dfrac{1-\phi}{\phi} - \dfrac{1-2\phi}{\phi} BL_A}\\
+    &= \frac{\delta - \phi}{\phi} \frac{\bar{L} - L_A}{\rho + BL_A}\frac{w_t}{A_t}
+\end{align*}
+In the equilibrium cost and present value of profit are equal, so we have
+\begin{align*}
+    \frac{w_t}{BA_t} = \frac{\delta - \phi}{\phi} \frac{\bar{L} - L_A}{\rho + BL_A}\frac{w_t}{A_t}
+\end{align*}\\\\
+Solving the equilibrium equation for $L_A$, we get:
+\begin{align*}
+    \bar{L}-L_A&=\dfrac{1}{B}\frac{\phi}{\sigma-\phi}(\rho+BL_A)\\
+    \implies L_A &= \frac{\delta - \phi}{\delta} \bar{L} - \frac{\phi}{\delta} \frac{\rho}{B}
+\end{align*}
+We have the growth rate as $\dfrac{1-\phi}{\phi}(BL_A)$. Substituting $L_A$, we get:
+\begin{align*}
+    \frac{\dot{Y}_t}{Y_t} = B\bar{L} \frac{\delta - \phi}{\delta} \frac{1-\phi}{\phi} - \frac{1-\phi}{\delta}\rho 
+\end{align*}
+Taking derivative, We have:
+\begin{align*}
+    \rond{\dot{Y}_t/Y_t}{\delta} &= \frac{1-\phi}{\phi} B\bar{L} \biggl(\frac{\delta - (\delta - \phi)}{\delta^2}\biggr) + \frac{1-\phi}{\delta^2} \rho \\
+    &= \frac{\phi}{\delta^2} \frac{1-\phi}{\phi} B\bar{L} + \frac{1-\phi}{\delta^2} \rho > 0 
+\end{align*}
+From the answer being positive, we can conclude that the corner solution will not occur. The equation shows that a decrease in $\delta$ reduces the equilibrium growth rate of output.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\partof{b}
+While setting $\delta = \phi$ will eliminate distortion, it also makes the present value of invention profit zero. So there is no incentive for inventors to invest on producing new ideas. Since the long run growth in the economy is deriving by R\&D,
+removing the incentives of the innovaters for R\&D will imply to no long run growth,
+which is not socially optimal.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+

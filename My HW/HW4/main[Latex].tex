@@ -1,0 +1,376 @@
+\documentclass[12pt]{extarticle}
+%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%
+\usepackage{titleps}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{cancel}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks]{hyperref}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=19mm,
+    right=19mm,
+    top=20mm,
+    bottom=25mm
+}
+% Define dark and mid color
+
+\definecolor{Sepia}{HTML}{704214}
+\definecolor{RedViolet}{HTML}{C71585}
+
+% Mix lighter shade
+
+\colorlet{LightSepia1}{Sepia!80!yellow}
+\colorlet{LightSepia2}{Sepia!70!orange}
+\colorlet{DarkGolden}{RedViolet!30!yellow!70!Maroon!70!Brown}
+\colorlet{Golden}{RedViolet!30!yellow!70!pink!90!Brown}
+\colorlet{DDarkGolden}{RedViolet!20!yellow!70!Maroon!70!Black!65!Brown}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% FONT %%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+
+\def\primarycolor{DarkGolden}
+\def\secondarycolor{Golden}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% HEADER %%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\color{\secondarycolor}\oldheadrule}
+\renewcommand{\headrulewidth}{0.7pt}
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+\fancyhead[L]{\scshape \large \color{\primarycolor}{\fontfamily{qpl}\selectfont
+Amirreza "Farnam" Taheri \\
+Student ID: 4021300198003
+}}
+\fancyhead[R]{\color{\secondarycolor} Game Theory}
+\fancyfoot[C]{\textcolor{\primarycolor}{(\thepage)}}
+\setlength{\headheight}{1cm}
+
+\fancypagestyle{headerpage}{
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header rule
+    \renewcommand{\footrulewidth}{0pt} % Remove footer rule
+    \fancyhead[R]{} % Remove the line that displays "Course Name (Course Code)" in the header page
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% COMMANDS %%%%%%%%%%%%%%%
+% \newcommand{\norm}[1]{\lVert#1\rVert}
+% \newcommand{\inner}[1]{\langle#1\rangle}
+\newcommand{\problem}[1]{
+    \subsection*{\textcolor{\secondarycolor}{#1}}
+    \addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\partof}[1]{
+    \subsubsection*{\textcolor{\secondarycolor}{(#1)}}
+    \addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}
+}
+\newcommand{\imp}{\implies}
+\newcommand{\rond}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drond}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\norm}[1]{\lvert#1\rvert}
+\newcommand{\expec}[1]{\mathbb{E}\left(#1\right)}
+\newcommand{\var}[1]{\mathrm{Var}\left(#1\right)}
+\newcommand{\cov}[1]{\mathrm{Cov}\left(#1\right)}
+\newcommand{\prob}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\ones}{$\star$}
+\newcommand{\twos}{$\star\star$}
+\newcommand{\threes}{$\star\star\star$}
+\newcommand{\fours}{$\star\star\star\star$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% BODY %%%%%%%%%%%%%%%%%%%
+\linespread{1.4}
+\color{DDarkGolden}
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\thispagestyle{headerpage} % Apply custom header style to this page only
+\begin{center}
+    \vspace*{1.5cm}
+    {\Huge\bfseries\color{\primarycolor}{\fontfamily{qpl}\selectfont Exercise 4}} \\
+    \vspace{3cm}
+    \includegraphics[width=6cm]{teias.png} \\ % Replace "university_logo.png" with the actual filename of your university logo
+    \vspace{2cm}
+    {\Large\color{\primarycolor}{\fontfamily{qpl}\selectfont Amirreza "Farnam" Taheri}} \\
+    {\large\color{\primarycolor}{Student ID: 4021300198003}} \\
+    \vspace{3cm}
+    {\large\bfseries\color{\secondarycolor}{Macroeconomics I}} \\
+    \vspace{1cm}
+    {\large\color{\secondarycolor}{Instructor: Prof. Hosein Joshaghani}} \\
+    \vspace{3cm}
+    {\large\color{\secondarycolor}{April 5, 2024}} % Replace with the actual date or semester information
+\end{center}
+\newpage % Add a page break after the header page
+
+%%%%%%%%%%%%%%% CONTENT %%%%%%%%%%%%%%%%
+\pagestyle{fancy} % Apply fancy header to the remaining pages
+\fancyhead[R]{\color{\secondarycolor} Problemset 4} % Display "Problemset #no" in the header of the remaining pages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{\Large\begin{center}
+    {Learning By Doing: Externalities}
+\end{center}}
+\vspace*{2cm}
+Consider an economy described as follows:
+\begin{align*}
+    u(c_t) &=\dfrac{c_t^{1-1/\theta}}{1-1/\theta} \\
+    Y_t &= K_t^\alpha (h_t L_t)^{1-\alpha} \\
+    k_{t+1} &= (1 - \delta)k_t + i_t \\
+    h_t &= b k_t , b > 0, L_t = L = \text{constant}, \forall t \\
+\end{align*}
+Assume discount factor, \(\beta\), is in (0, 1).
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{1.}Describe how human capital, $h_t$, accumulates in this economy. Do agents invest in improving $h_t$? Do
+you believe centeralized, and decenteralized problems, will have the same outcome in this economy?\\\\\\
+Agents do not invest in improving human capital in this model.
+The human capital in this model is increased as physical capital per worker increases $(h_t=b k_t)$.
+Meaning that workers' human capital is increased when more physical capital is allocated to them.\\\\
+The social planner's does not come to the same result as decenteralized problem,
+increase in human capital is an externality in this model.
+Thus, we expect that the investment in physical capital in the equilibrium would be less than the social optimum.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{2.}Write and solve the social planner's problem. What is the growth rate of consumption in this economy?
+What is the optimal saving rate (assume a linear savings function)?\\\\\\
+The resource constraint is as follows:
+\begin{align*}
+    k_{t+1} -  k_t = k_t^{\alpha} h_t^{1-\alpha} -\delta k_t - c_t
+\end{align*}\\
+Plugging the problems assumption $(h_t=bk_t)$ in it, we will reach: 
+\begin{align*}
+    k_{t+1} -  k_t & = k_t^{\alpha}\;(bk_t)^{1-\alpha} -\delta k_t - c_t\\
+    & = k_t\;b^{1-\alpha} -\delta k_t - c_t\\
+\end{align*}
+The social planner wants to maximize the discounted utility subject to the resource constraint, by choosing the consumption of current and capital of the next period!
+So, its problem would be:
+\begin{align*}
+    \max_{c_t, k_{t+1}} \; \sum_{t=0}^{\infty} \beta^{t} u(c_t) \quad \text{s.t.} \quad
+    k_{t+1} -  k_t = k_t\;b^{1-\alpha} -\delta k_t - c_t
+\end{align*}\\
+Writing the Lagrangian, we have:
+\begin{align*}
+    \mathcal{L} = \sum_{t=0}^{\infty} \beta^{t} u(c_t) + \sum_{t=0}^{\infty}
+    \mu_t\biggl[(1 + b^{1-\alpha} - \delta) k_t - c_t - k_{t+1}\biggr]
+\end{align*}\\
+Taking the FOC, we get:
+\begin{align*}
+    \rond{\mathcal{L}}{c_t} &= \beta^{t} u^\prime(c_t) - \mu_t = 0 \tag{\ones}\\
+    \rond{\mathcal{L}}{k_{t+1}} &= -\mu_t + \mu_{t+1} (1 + b^{1-\alpha}-\delta) = 0 \tag{\twos}
+\end{align*}\\
+Plugging $\mu_{t} \And \mu_{t+1}$ from \ones\; into \twos, we will reach the Euler equation:
+\begin{align*}
+    -\mu_t + \mu_{t+1} (1 + b^{1-\alpha}-\delta) &= 0 \\
+    -\beta^{t} u^\prime(c_t) + \beta^{t+1} u^\prime(c_{t+1}) (1 + b^{1-\alpha}-\delta) &= 0\\
+    \beta^{t+1} u^\prime(c_{t+1}) (1 + b^{1-\alpha}-\delta) &= \beta^{t} u^\prime(c_t)\\
+    \implies\dfrac{u^\prime(c_{t+1}) }{u^\prime(c_t)} &= \dfrac{1}{\beta (1 + b^{1-\alpha}-\delta)}\; \checkmark\\
+\end{align*}
+Previously we had:
+$$u(c_t) = \dfrac{c_t^{1-1/\theta}}{1-1/\theta} \implies u'(c_t)=c_t^{-1/\theta}$$\\
+Plugging into the Euler equation, we get:
+\begin{align*}
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta(1 + b^{1-\alpha} - \delta)\bigr]^{\theta} \tag{\threes}
+\end{align*}\\
+Assuming a linear saving function with rate $s$, we have:
+\begin{align*}
+    c_t &= (1-s)(1 + b^{1-\alpha} - \delta)k_t \tag{$1$}\\
+    c_{t+1} &= (1-s)(1 + b^{1-\alpha} - \delta)k_{t+1} \tag{$2$}
+\end{align*}\\
+Also we have:
+\begin{align*}
+    k_{t+1}=s(k_tb^{1-\alpha}-\delta k_t)=s(b^{1-\alpha}-\delta)k_t \tag{$3$}
+\end{align*}
+Plugging $(1)$ and $(2)$ into the \threes, we get:
+\begin{align*}
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta(1 + b^{1-\alpha} - \delta)\bigr]^{\theta} \\
+    \frac{\cancel{(1-s)(1 + b^{1-\alpha} - \delta)}\;k_{t+1}}{\cancel{(1-s)(1 + b^{1-\alpha} - \delta)}\;k_t} &= \bigl[\beta(1 + b^{1-\alpha} - \delta)\bigr]^{\theta} \\
+\end{align*}\\
+Plugging $(3)$ into the last equation and solving for $s$, we finally reach the optimal saving rate, which is:
+$$s = \beta^{\theta} (1 + b^{1-\alpha} - \delta)^{\theta-1}$$
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{3.}Show that the household budget constraint can be written as:
+$$c_t + k_{t+1} + b_{t+1} = w_t h_t + (1 + r_t - \delta) k_t + (1 + \underbrace{R_t}_{\text{ or } R_{t-1}}  ) b_t$$\\
+where $b+t$ is a risk-free bond with return $R_t$ (determined endogenously).
+What is the arbitrage condition between risk-free bonds and capital?
+Use the FOCs of the household to find Euler equation.
+Using the firm’s profit maximizing behavior, what is the equilibrium interest rate for physical capital and the wage rate?
+What is the growth rate of consumption?\\\\\\
+The income sources for households are effective wages $w_th_t$, return on capital $r_tk_t$ and return on bonds $R_tb_t$. In each period, the household can either consume the income $c_t$,
+or invest in the physical capital $i_t^k$,
+or buy the government bonds $i_t^b$.
+So we can write the household budget constraint as:
+\begin{align*}
+    c_t + i_t^k + i_t^b &= w_t h_t + r_t k_t + R_t b_t \\
+    c_t + (k_{t+1}-k_t+\delta k_t) + i_t^b &= w_t h_t + r_t k_t + R_t b_t \tag{Using $i_t^k=k_{t+1}-k_t+\delta k_t$}\\
+    c_t + (k_{t+1}-k_t+\delta k_t) + (b_{t+1}-b_t) &= w_t h_t + r_t k_t + R_t b_t \tag{Using $i_t^b=b_{t+1}-b_t$}\\
+    c_t + k_{t+1} + b_{t+1} &= w_t h_t + (1 + r_t - \delta) k_t + (1 + R_t) b_t\; \checkmark \tag{\ones}\\
+\end{align*}\\
+In order to not having arbitrage, the following equation of return of capital and bond must hold.
+Otherwise the agents will prefer one type of investment to the other.
+\begin{align*}
+    R_t = r_t - \delta
+\end{align*}
+Plugging into (\ones), we get:
+\begin{align*}
+    c_t + k_{t+1} + b_{t+1} &= w_t h_t + (1 + R_t) (k_t+b_t)=w_t h_t + \bigl(1 + (r_t-\delta)\bigr) (k_t+b_t)\\
+\end{align*}
+The no-arbitrage condition implies that there is no difference in investing in capital or bonds,
+So basically we can define assest in period $t$ as: $a_t=k_t+b_t$. Plugging into the previous equation, we get:
+\begin{align*}
+    c_t + k_{t+1} + b_{t+1} = w_t h_t + (1 + R_t) (a_t) = w_t h_t + \bigl(1 + (r_t-\delta)\bigr) (a_t)\\
+\end{align*}
+The household is choosing its consumption in the current period and its asset in the next period to maximize its aggregate utility subject to the budget constraint.
+So its problem would be:
+\begin{align*}
+    \max_{c_t, a_{t+1}} \; \sum_{t=0}^{\infty} \beta^{t} u(c_t) \quad \text{s.t.} \quad
+    c_t + k_{t+1} + b_{t+1} = w_t h_t + (1 + R_t) (a_t)
+\end{align*}\\
+So the lagrangian for this problem is:
+\begin{align*}
+    \mathcal{L} = \sum_{t=0}^{\infty} \beta^{t} u(c_t)
+    + \sum_{t=0}^{\infty} \mu_t \biggl[w_th_t + (1 + R_t) a_t - c_t - a_{t+1}\biggr]
+\end{align*}
+Taking FOC, we get:
+\begin{align*}
+    \rond{\mathcal{L}}{c_t} &= \beta^t u^\prime(c_t) - \mu_t = 0 \tag{1}\\
+    \rond{\mathcal{L}}{a_{t+1}} &= -\mu_t + (1+R_t)\mu_{t+1} = 0 \tag{2}\\
+\end{align*}
+Plugging $\mu_{t} \And \mu_{t+1}$ from $(1)$ into $(2)$,
+we will reach the Euler equation:
+\begin{align*}
+   -\mu_t + (1+R_t)\mu_{t+1} & = 0 \\
+   -\beta^{t} u^\prime(c_{t}) + (1+R_{t})\beta^{t+1} u^\prime(c_{t+1}) & = 0 \\
+    (1+R_{t+1})\beta^{t+1} u^\prime(c_{t}) & = \beta^{t} u^\prime(c_{t}) \\
+    \implies\dfrac{u^\prime(c_{t+1}) }{u^\prime(c_t)} &= \dfrac{1}{\beta (1 + R_{t})}\; \checkmark
+\end{align*}\\
+Plugging  $u'(c) = c^{-1/\theta}$ into the Euler equation:
+\begin{align*}
+    \frac{c_{t+1}}{c_t} = (\beta (R_t+1))^{\theta}
+\end{align*}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The firm problem is to maximize the profit, choosing capital and labor:
+\begin{align*}
+    \max_{K, L} \; \Pi = K_t^{\alpha} (h_t L_t)^{1-\alpha} - w_th_tL_t - r_tK_t
+\end{align*}\\
+Taking the first order condition we have:
+\begin{align*}
+    \rond{\Pi}{K}&= \alpha K_t^{\alpha-1} (h_tL_t)^{1-\alpha} - r_t = 0\\
+    \implies r_t &= \alpha K_t^{\alpha-1} (h_tL_t)^{1-\alpha}\\
+    &= \alpha K_t^{\alpha-1} L_t^{-(\alpha-1)} h_t^{1-\alpha}\\
+    &= \alpha k_t^{\alpha-1} h_t^{1-\alpha}
+\end{align*}
+\begin{align*}
+    \rond{\Pi}{L} &= (1-\alpha) K_t^{\alpha}h_t^{1-\alpha}L_t^{-\alpha} - w_t h_t = 0\\
+    \implies  w_t &= (1-\alpha)K_t^{\alpha}h_t^{-\alpha}L_t^{-\alpha}\\
+    &= (1-\alpha)k_t^{\alpha}h_t^{-\alpha}\\
+\end{align*}\\
+From the previous part, we have the Euler equation, substituting $R_t,r_t$ into it, we get the consumption growth:\\
+\begin{align*}
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + R_t)\bigr]^{\theta} \tag{Using $R_t = r_t - \delta$}\\
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + (r_t - \delta))\bigr]^{\theta} \tag{Using $r_t = \alpha k_t^{\alpha-1} h_t^{1-\alpha}$}\\
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + (\alpha k_t^{\alpha-1} h_t^{1-\alpha} - \delta))\bigr]^{\theta} \tag{Using $h_t = b k_t$}\\
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + (\alpha b_t - \delta))\bigr]^{\theta}\\
+\end{align*}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{4.}Compare the growth rate in centeralized and decenteralized problems. How are they different, and why?\\\\\\
+The growth rate of consumption in the centeral planner problem is as follows:
+\begin{align*}
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta(1 + b^{1-\alpha} - \delta)\bigr]^{\theta} 
+\end{align*}\\
+The growth rate of consumption in the decenteralized problem is as follows:
+\begin{align*}
+    \frac{c_{t+1}}{c_t} = \bigl[\beta (1 + \alpha b^{1-\alpha} - \delta)\bigr]^{\theta} 
+\end{align*}\\
+
+We know that $\alpha < 1$, implying that the growth rate in the centeral planner problem is higher than the decenteralized problem.
+
+
+It is due to positive externality of learning by doing, which is not considered in the decenteralized problem but is consiedered in the centeral planner's problem.
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{5.}Suppose the government subsidizes the private cost of capital for firms.
+In other words, firms must pay $(1 - \tau)r_t$ instead of $r_t$ for each unit of capital employed.
+The government pays for this subsidy via lump sum taxes, $T$, on individuals.
+Solve the decenteralized problem in this economy.\\\\\\
+Rerwiting the budget constraint and implementing the tax, we have:
+\begin{align*}
+    \frac{c_{t+1}}{c_t} = c_t + k_{t+1} + b_{t+1} = w_th_t + (1 + r_t - \delta) k_t + (1+R_t) b_t - T_t
+\end{align*}
+The FOCs of the centeralized problem and no-arbitrage will not change due to the lump sum tax.\\
+So the growth rate of consumption will still be the same as the last part:
+\begin{align}
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta(1 + b^{1-\alpha} - \delta)\bigr]^{\theta} 
+\end{align}\\
+On the other hand, firm's problem has changed due to the subsidy on the private cost of capital.\\
+Rewriting the firm's problem:
+\begin{align*}
+    \max_{K, L} \; \Pi = K_t^{\alpha} (h_t L_t)^{1-\alpha} - w_th_tL_t - (1-\tau)r_tK_t
+\end{align*}\\
+Taking the first order condition we have:
+\begin{align*}
+    \rond{\Pi}{K}&= \alpha K_t^{\alpha-1} (h_tL_t)^{1-\alpha} - (1-\tau)r_t = 0\\
+    \implies r_t &= \dfrac{\alpha}{(1-\tau)} K_t^{\alpha-1} (h_tL_t)^{1-\alpha}\\
+    &= \dfrac{\alpha}{(1-\tau)} K_t^{\alpha-1} L_t^{-(\alpha-1)} h_t^{1-\alpha}\\
+    &= \dfrac{\alpha}{1-\tau} k_t^{\alpha-1} h_t^{1-\alpha}
+\end{align*}
+\begin{align*}
+    \rond{\Pi}{L} &= (1-\alpha) K_t^{\alpha}h_t^{1-\alpha}L_t^{-\alpha} - w_t h_t = 0\\
+    \implies  w_t &= (1-\alpha)K_t^{\alpha}h_t^{-\alpha}L_t^{-\alpha}\\
+    &= (1-\alpha)k_t^{\alpha}h_t^{-\alpha}\\
+\end{align*}\\\\
+From the previous part, we have the Euler equation, substituting $R_t,r_t,b$ into it; we get the consumption growth:\\
+\begin{align*}
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + R_t)\bigr]^{\theta} \tag{Using $R_t = r_t - \delta$}\\
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + (r_t - \delta))\bigr]^{\theta} \tag{Using $r_t = \dfrac{\alpha}{1-\tau} k_t^{\alpha-1} h_t^{1-\alpha}$}\\
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + \dfrac{\alpha}{1-\tau}\;k_t^{\alpha-1} h_t^{1-\alpha} - \delta)\bigr]^{\theta} \tag{Using $h_t = b k_t$}\\
+    \frac{c_{t+1}}{c_t} &= \bigl[\beta (1 + \dfrac{\alpha}{1-\tau} b^{1-\alpha} - \delta)\bigr]^{\theta}\\
+\end{align*}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{6.}What is the optimal level of $\tau$ (for which the centeralized and decenteralized problems coincide)? Why does
+the government want to subsidize investment in this model?\\\\\\
+For centeral planner's problem growth rate with subsidy to coincide with the decenteralized problem, we should have:
+\begin{align*}
+    \bigl[\beta(1 + b^{1-\alpha} - \delta)\bigr]^{\theta}  &=  \bigl[\beta (1 + \dfrac{\alpha}{1-\tau} b^{1-\alpha} - \delta)\bigr]^{\theta}\\
+    \implies \qquad 1  &=  \dfrac{\alpha}{1-\tau}\\ 
+    \implies  \;1-\tau  &=  \alpha\\
+    \implies  \qquad \tau  &=  \alpha +1 
+\end{align*}\\
+
+The government is willing to subsidize investment because firms do not invest in physical capital at the social optimal level.
+The social optimal level in this model is higher than the firm's optimal level because of the learning by doing positive externality.
+So the government is willing to increase the investment level to the social optimal level by giving subsidy on the investment.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
